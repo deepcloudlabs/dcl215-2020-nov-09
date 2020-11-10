@@ -1,14 +1,17 @@
-package com.example;
+package com.example.tags;
 
 import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 
-@FunctionalTest
+import com.example.LoadTest;
+import com.example.StressTest;
+
+//@FunctionalTest
+@Tag("stress")
 public class UseTags {
 	@Test
 	void test1() {
-		
+		System.err.println("test1");	
 	}
 	@Test
 	@LoadTest
@@ -21,11 +24,11 @@ public class UseTags {
 	@Tag("stress")
 	@Tag("load")	
 	void test2() {
-		
+		System.err.println("test2");			
 	}
 	@Test
 	@StressTest
 	void test3() {
-		
+		System.err.println("test3");					
 	}
 }
