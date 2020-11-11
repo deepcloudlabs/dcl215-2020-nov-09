@@ -8,9 +8,9 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitPlatform.class)
 //@SelectClasses({ UseTags.class })
 @SelectPackages("com.example.tags")
-@IncludeTags({ "stress", "functional" })
+@IncludeTags({ "functional" })
 //@ExcludeTags({"load"})
-//@IncludeCategory({StressTest.class,FunctionalTest.class})
+//@IncludeCategory({FunctionalTest.class})
 //@ExcludeCategory(LoadTest.class)
 //@SelectPackages
 public class UseTestSuite {
