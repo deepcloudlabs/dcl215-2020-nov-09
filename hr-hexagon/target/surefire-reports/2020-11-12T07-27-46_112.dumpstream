@@ -1,0 +1,19 @@
+# Created at 2020-11-12T07:27:47.832
+Boot Manifest-JAR contains absolute paths in classpath 'D:\var\workspace\dcl\dcl-215\2020\nov-09\hr-hexagon\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+
+# Created at 2020-11-12T07:27:48.661
+WARNING: An illegal reflective access operation has occurred
+
+# Created at 2020-11-12T07:27:48.661
+WARNING: Illegal reflective access by org.mockito.cglib.core.ReflectUtils$2 (file:/C:/Users/dcl/.m2/repository/org/mockito/mockito-all/1.10.19/mockito-all-1.10.19.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+
+# Created at 2020-11-12T07:27:48.661
+WARNING: Please consider reporting this to the maintainers of org.mockito.cglib.core.ReflectUtils$2
+
+# Created at 2020-11-12T07:27:48.666
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+
+# Created at 2020-11-12T07:27:48.666
+WARNING: All illegal access operations will be denied in a future release
+

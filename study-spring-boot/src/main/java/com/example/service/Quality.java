@@ -5,8 +5,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import javax.swing.text.html.parser.Element;
-
 import org.springframework.beans.factory.annotation.Qualifier;
 
 @Target({ElementType.TYPE, ElementType.FIELD, ElementType.PARAMETER})

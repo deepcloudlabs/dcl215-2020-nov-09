@@ -1,5 +1,7 @@
 package com.example.hr.dto;
 
+import java.util.Objects;
+
 import com.example.hr.domain.Employee;
 import com.example.hr.domain.FiatCurrency;
 
@@ -15,6 +17,7 @@ public class EmployeeResponse {
 	}
 
 	public EmployeeResponse(Employee employeeEntity) {
+		Objects.requireNonNull(employeeEntity);
 		this.identity = employeeEntity.getIdentity().getValue();
 		this.firstname = employeeEntity.getFullname().getFirst();
 		this.lastname = employeeEntity.getFullname().getLast();
@@ -69,6 +72,12 @@ public class EmployeeResponse {
 
 	public void setCurrency(FiatCurrency currency) {
 		this.currency = currency;
+	}
+
+	@Override
+	public String toString() {
+		return "EmployeeResponse [identity=" + identity + ", firstname=" + firstname + ", lastname=" + lastname
+				+ ", iban=" + iban + ", salary=" + salary + ", currency=" + currency + "]";
 	}
 
 }

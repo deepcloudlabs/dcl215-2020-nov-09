@@ -7,8 +7,8 @@ import com.example.hr.domain.TcKimlikNo;
 
 public interface HrApplication {
 
-	Optional<Employee> hireEmployee(Employee employee);
+	default Optional<Employee> hireEmployee(Employee employee){ return Optional.empty();}
 
-	Optional<Employee> fireEmployee(TcKimlikNo identity);
+	default Optional<Employee> fireEmployee(TcKimlikNo identity){return Optional.empty();}
 
 }

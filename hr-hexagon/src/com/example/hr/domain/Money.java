@@ -27,4 +27,10 @@ public final class Money {
 			throw new IllegalArgumentException("money cannot be negative.");
 		return new Money(value, currency);
 	}
+
+	@Override
+	public String toString() {
+		return value + " " + currency.name();
+	}
+
 }

@@ -1,13 +1,8 @@
 package com.example.service.business;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnCloudPlatform;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.cloud.CloudPlatform;
 import org.springframework.stereotype.Service;
 
 import com.example.service.CustomerService;
-import com.example.service.Quality;
-import com.example.service.QualityLevel;
 
 //@Component  // P
 @Service    // BL
@@ -19,7 +14,9 @@ import com.example.service.QualityLevel;
 //@ConditionalOnProperty(name = "customer.service.mode", havingValue = "standard")
 public class StandardCustomerService implements CustomerService {
 	@Override
-	public void fun() {}
+	public void fun() {
+		System.err.println("have fun using StandardCustomerService");
+	}
 	@Override
 	public int gun() { return 42;}
 }

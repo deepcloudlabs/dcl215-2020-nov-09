@@ -3,7 +3,7 @@ package com.example.hr.domain;
 // Value Object
 public final class Iban {
 	private final String value;
-	
+
 	private Iban(String value) {
 		this.value = value;
 	}
@@ -21,4 +21,10 @@ public final class Iban {
 	private static boolean isValid(String value2) {
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return value;
+	}
+
 }

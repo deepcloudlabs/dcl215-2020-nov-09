@@ -64,6 +64,12 @@ public class Employee {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Employee [identity=" + identity + ", fullname=" + fullname + ", iban=" + iban + ", salary=" + salary
+				+ "]";
+	}
 	
 
 }

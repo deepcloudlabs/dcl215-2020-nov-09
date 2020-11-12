@@ -26,4 +26,10 @@ public final class Fullname {
 		Objects.requireNonNull(last);
 		return new Fullname(first, last);
 	}
+
+	@Override
+	public String toString() {
+		return first + " " + last;
+	}
+
 }
