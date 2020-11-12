@@ -20,7 +20,7 @@ public class EventPublisherKafkaAdapter implements EventPublisher{
 	
 	@Override
 	public boolean publishEvent(EmployeeEvent event) {
-		kafkaTemplate.send("employees", new EmployeeKafkaEvent(event.getIdentity()));
+		kafkaTemplate.send("employees", mapper.map(event, EmployeeKafkaEvent.class));
 		return true;
 	}
 

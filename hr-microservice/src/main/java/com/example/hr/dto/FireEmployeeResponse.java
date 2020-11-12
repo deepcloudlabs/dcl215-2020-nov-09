@@ -1,15 +1,13 @@
 package com.example.hr.dto;
 
-import com.example.hr.domain.Employee;
-
 public class FireEmployeeResponse {
 
 	private String status;
 	private EmployeeResponse employee;
 
-	public FireEmployeeResponse(String status, Employee employeeEntity) {
+	public FireEmployeeResponse(String status, EmployeeResponse employeeResponse) {
 		this.status = status;
-		this.employee = new EmployeeResponse(employeeEntity);
+		this.employee = employeeResponse;
 	}
 
 	public String getStatus() {

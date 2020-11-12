@@ -14,9 +14,12 @@ import org.springframework.web.context.annotation.RequestScope;
 import com.example.hr.application.HrApplication;
 import com.example.hr.domain.Employee;
 import com.example.hr.domain.TcKimlikNo;
+import com.example.hr.dto.EmployeeResponse;
 import com.example.hr.dto.FireEmployeeResponse;
 import com.example.hr.dto.HireEmployeeRequest;
 import com.example.hr.dto.HireEmployeeResponse;
+import com.example.hr.exception.EmployeeNotFoundException;
+import com.example.hr.exception.ExistingEmployeeException;
 
 @RestController
 @RequestScope
@@ -31,20 +34,15 @@ public class HrController {
 
 	@PostMapping
 	public HireEmployeeResponse hireEmployee(@RequestBody HireEmployeeRequest request) {
-		Employee employee = request.toEmployee();
-		var optEmp = hrApp.hireEmployee(employee);
-		if (optEmp.isPresent()) {
-			return new HireEmployeeResponse("ok", optEmp.get());
-		}
-		return new HireEmployeeResponse("error", null);
+		return hrApp.hireEmployee(mapper.map(request, Employee.class))
+				.map(emp -> new HireEmployeeResponse("ok", mapper.map(emp, EmployeeResponse.class)))
+				.orElseThrow( () -> new ExistingEmployeeException("Cannot hire existing employee",request.getIdentity()));
 	}
 
 	@DeleteMapping("{identity}")
 	public FireEmployeeResponse fireEmployee(@PathVariable String identity) {
-		var optEmp = hrApp.fireEmployee(TcKimlikNo.valueOf(identity));
-		if (optEmp.isPresent()) {
-			return new FireEmployeeResponse("ok", optEmp.get());
-		}
-		return new FireEmployeeResponse("error", null);
+		return hrApp.fireEmployee(TcKimlikNo.valueOf(identity))
+		     .map( emp -> new FireEmployeeResponse("ok", mapper.map(emp,EmployeeResponse.class)))
+		     .orElseThrow( () -> new EmployeeNotFoundException("Cannot fire non-exisiting employee",identity));
 	}
 }
