@@ -1,19 +1,25 @@
 package com.example.hr.dto;
 
-import com.example.hr.domain.Employee;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import com.example.hr.domain.FiatCurrency;
-import com.example.hr.domain.Fullname;
-import com.example.hr.domain.Iban;
-import com.example.hr.domain.Money;
-import com.example.hr.domain.TcKimlikNo;
+import com.example.validation.IbanNo;
+import com.example.validation.KimlikNo;
 
 public class HireEmployeeRequest {
-
+	@KimlikNo
 	private String identity;
+	@NotEmpty
 	private String firstname;
+	@NotEmpty
 	private String lastname;
+	@IbanNo
 	private String iban;
+	@Min(3000)
 	private double salary;
+	@NotNull
 	private FiatCurrency currency;
 
 	public HireEmployeeRequest() {
@@ -81,12 +87,6 @@ public class HireEmployeeRequest {
 	public String toString() {
 		return "HireEmployeeRequest [identity=" + identity + ", firstname=" + firstname + ", lastname=" + lastname
 				+ ", salary=" + salary + ", currency=" + currency + "]";
-	}
-
-	// ACL: Anti-corruption Layer
-	public Employee toEmployee() {
-		return new Employee(TcKimlikNo.valueOf(identity), Fullname.of(firstname, lastname), 
-				Iban.valueOf(iban),Money.of(salary, currency));
 	}
 
 }

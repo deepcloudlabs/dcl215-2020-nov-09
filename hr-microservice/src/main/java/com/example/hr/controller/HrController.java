@@ -2,6 +2,7 @@ package com.example.hr.controller;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,11 +21,13 @@ import com.example.hr.dto.HireEmployeeRequest;
 import com.example.hr.dto.HireEmployeeResponse;
 import com.example.hr.exception.EmployeeNotFoundException;
 import com.example.hr.exception.ExistingEmployeeException;
+import com.example.validation.KimlikNo;
 
 @RestController
 @RequestScope
 @RequestMapping("/employees")
 @CrossOrigin
+@Validated
 // Adapter
 public class HrController {
 	@Autowired
@@ -33,14 +36,14 @@ public class HrController {
 	private ModelMapper mapper;
 
 	@PostMapping
-	public HireEmployeeResponse hireEmployee(@RequestBody HireEmployeeRequest request) {
+	public HireEmployeeResponse hireEmployee(@RequestBody @Validated HireEmployeeRequest request) {
 		return hrApp.hireEmployee(mapper.map(request, Employee.class))
 				.map(emp -> new HireEmployeeResponse("ok", mapper.map(emp, EmployeeResponse.class)))
 				.orElseThrow( () -> new ExistingEmployeeException("Cannot hire existing employee",request.getIdentity()));
 	}
 
 	@DeleteMapping("{identity}")
-	public FireEmployeeResponse fireEmployee(@PathVariable String identity) {
+	public FireEmployeeResponse fireEmployee(@PathVariable @Validated @KimlikNo String identity) {
 		return hrApp.fireEmployee(TcKimlikNo.valueOf(identity))
 		     .map( emp -> new FireEmployeeResponse("ok", mapper.map(emp,EmployeeResponse.class)))
 		     .orElseThrow( () -> new EmployeeNotFoundException("Cannot fire non-exisiting employee",identity));
